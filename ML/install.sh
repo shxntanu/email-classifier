@@ -1,1 +1,0 @@
-pip install scikit-learn yagmail
