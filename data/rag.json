@@ -1,0 +1,46 @@
+{
+    "root":{
+        "child": ["HR", "IT", "Finance", "Customer Service"],
+        "is_leaf": 0
+    },
+    "HR":{
+        "child": ["Talent aquisition", "Diversity, Equity, and Inclusion"],
+        "is_leaf": 0
+    },
+    "IT":{
+        "child": ["Software Development", "Security"],
+        "is_leaf": 0
+    },
+    "Finance":{
+        "child": ["Accounting", "Treasury"],
+        "is_leaf": 0
+    },
+    "Customer Service":{
+        "child": ["mail1", "mail2"],
+        "is_leaf": 1
+    },
+    "Talent aquisition":{
+        "child": ["mail3", "mail4"],
+        "is_leaf": 1
+    },
+    "Diversity, Equity, and Inclusion":{
+        "child": ["mail5", "mail6"],
+        "is_leaf": 1
+    },
+    "Software Development":{
+        "child": ["mail7", "mail8"],
+        "is_leaf": 1
+    },
+    "Security":{
+        "child": ["mail9", "mail10"],
+        "is_leaf": 1
+    },
+    "Accounting":{
+        "child": ["mail11", "mail12"],
+        "is_leaf": 1
+    },
+    "Treasury":{
+        "child": ["mail13", "mail14"],
+        "is_leaf": 1
+    }
+}
