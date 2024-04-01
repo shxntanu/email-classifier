@@ -1,0 +1,11 @@
+{
+  "name": "barclays-hoh",
+  "version": "1.0.0",
+  "description": "Backend server for Barclays Hack-o-Hire",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yarn dev",
+  "license": "ISC"
+}

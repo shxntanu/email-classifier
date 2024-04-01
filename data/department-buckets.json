@@ -1,0 +1,192 @@
+[
+    {
+        "id": "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2",
+        "name": "root",
+        "description": "Root node which receives all emails for further classification",
+        "child_buckets": [
+            "15e68b1f46577e27d82b47596b5bb9224ec847838c53432b4ae182a4e20a04e7",
+            "b696d75511dc16f2b52563e3113a498311a79866f4672862197aa9a8c5c0da12",
+            "f415bf7b07a9b2c07029144aafb3c59d0187682ecd2b8c8ac911e742a38a5f36",
+            "4a109cc49467be33772416ac924cc5729dcea700b8b4a0ba12f10bc595e2fa2c"
+        ]
+    },
+
+    {
+        "id": "15e68b1f46577e27d82b47596b5bb9224ec847838c53432b4ae182a4e20a04e7",
+        "name": "HR",
+        "description": "Human Resources Department. The HR department at Barclays oversees recruitment, employee benefits, and training & development initiatives to support the bank's workforce, ensuring the acquisition, retention, and growth of talented professionals.",
+        "child_buckets": [
+            "9396ed8f2948bfa6e6a7b666a407746891f7b4d5be46b978ee025b96420dd901",
+            "e4e4fa0a328f4214d6194c4f2b917c52d34ef8f85f1a1a48bd2d57df29934bdf",
+            "1b6a56c419c825f12ed33b0553bc917c0d261b7a4874dc01f654e2691524e73d"
+        ]
+    },
+    {
+        "id": "b696d75511dc16f2b52563e3113a498311a79866f4672862197aa9a8c5c0da12",
+        "name": "Finance",
+        "description": "Finance Department. The Finance department at Barclays manages financial operations, including investment banking, retail banking, and corporate banking activities, to optimize financial performance and ensure compliance with regulatory standards.",
+        "child_buckets": [
+            "fb0268eb8d886974b1da4716fe20e919f6f6f056d8e29d6af4e24597cb48b529",
+            "7f2501bc35fef949fbb616bb8e24d8717f19151e5d965b32d104611ee0740344",
+            "c51bb068775dfb6a5f7331fc30f5c937a6ad1a1e9bf275c22cb80fb693501d4a"
+        ]
+    },
+    {
+        "id": "f415bf7b07a9b2c07029144aafb3c59d0187682ecd2b8c8ac911e742a38a5f36",
+        "name": "IT",
+        "description": "Information Technology Department. The IT department at Barclays handles infrastructure management, application development, and IT support services to maintain technological systems, enhance operational efficiency, and support the bank's digital initiatives.",
+        "child_buckets": [
+            "ce0cff719a94747617230dde819ab25812021d6b80c236bf0c6891c0d46e45be",
+            "ff9d19447fd46f91ac3e032c2be86153c5c7854b932fe4e225a531c51f696659",
+            "13663f3ce0c7a4f764384060d266bffa98cd50d452d3b5ae315c00bd1c91c712"
+        ]
+    },
+    {
+        "id": "4a109cc49467be33772416ac924cc5729dcea700b8b4a0ba12f10bc595e2fa2c",
+        "name": "Compliance",
+        "description": "The Compliance Department. The Compliance department at Barclays ensures adherence to regulatory standards and internal policies, managing areas such as regulatory compliance and anti-money laundering efforts to mitigate risks and uphold the bank's integrity and reputation.",
+        "child_buckets": [
+            "8aa0df2a573dd579c5c020ce4aa74b198f74e1295dfa46ba8e8e4ff15e5dfe26",
+            "ee1a7d054d102c8ee3c892f2b5235b563d64d3605932f8c46d3c1fff00a129d2"
+        ]
+    },
+
+    {
+        "id": "9396ed8f2948bfa6e6a7b666a407746891f7b4d5be46b978ee025b96420dd901",
+        "name": "Recruitment",
+        "description": "The Recruitment Team. The Recruitment team at Barclays is responsible for sourcing, screening, and hiring qualified candidates to fill open positions within the bank, ensuring a diverse and talented workforce to support the bank's strategic objectives.",
+        "child_buckets": []
+    },
+    {
+        "id": "e4e4fa0a328f4214d6194c4f2b917c52d34ef8f85f1a1a48bd2d57df29934bdf",
+        "name": "Employee Benefits",
+        "description": "The Employee Benefits Team. The Employee Benefits team at Barclays manages employee compensation, benefits, and wellness programs to support the bank's workforce, enhance employee satisfaction, and promote a healthy work-life balance.",
+        "child_buckets": []
+    },
+    {
+        "id": "1b6a56c419c825f12ed33b0553bc917c0d261b7a4874dc01f654e2691524e73d",
+        "name": "Training & Development",
+        "description": "The Training & Development Team. The Training & Development team at Barclays designs and delivers training programs, workshops, and professional development initiatives to enhance employee skills, knowledge, and performance, supporting career growth and organizational success.",
+        "child_buckets": []
+    },
+
+    {
+        "id": "fb0268eb8d886974b1da4716fe20e919f6f6f056d8e29d6af4e24597cb48b529",
+        "name": "Investment Banking",
+        "description": "The Investment Banking Team. The Investment Banking department at Barclays specializes in providing financial advisory services, executing mergers and acquisitions, managing capital market transactions, and offering corporate finance solutions to clients, facilitating strategic transactions and capital raising activities.",
+        "child_buckets": [
+            "be66f599a75cf7766443463dd9aab9e798892027eaa9d0d507a0c7e632061c52",
+            "7d4c8dd3fb2729e74bf7c9b67ef37376b0435e362d2d78e02eb5408ee9eb6710",
+            "209e837d01fff79628891672fee6ee48521b5e517759e58ea4ca93932dd9ddc2"
+        ]
+    },
+    {
+        "id": "7f2501bc35fef949fbb616bb8e24d8717f19151e5d965b32d104611ee0740344",
+        "name": "Retail Banking",
+        "description": "The Retail Banking Team. The Retail Banking department at Barclays focuses on serving individual customers, offering a range of financial products and services such as savings accounts, mortgages, and loans, to meet their everyday banking needs and help them achieve their financial goals.",
+        "child_buckets": [
+            "99c444f4c1a9a41c6d1ec67e0ca6a9d4f79a8b489ce95c8235673590cd31b457",
+            "9be66b076b9c23a189a592f427d08c8cfc68dc0ab546da40841e635359bb258f",
+            "b991de5d014109f060aede7bdb315952a01029706bee4471208a231ec5b421fb"
+        ]
+    },
+    {
+        "id": "c51bb068775dfb6a5f7331fc30f5c937a6ad1a1e9bf275c22cb80fb693501d4a",
+        "name": "Corporate Banking",
+        "description": "The Corporate Banking department at Barclays caters to the financial needs of businesses and corporations, providing services such as commercial loans, trade finance, and cash management solutions to support their growth, manage liquidity, and optimize financial operations.",
+        "child_buckets": [
+            "14b007dff3babb220c8be6701b76fa73c13ac5a3a4a5f91533523fa55f5bab54",
+            "187ef63e1c19abd39043b4584a56f9b777dcfad9c1940a95b42471ac8baa8deb",
+            "555d3ef4046f83936ab73d4a8342f8a7b4bbec0e11e128dbf84beda8d15a8526"
+        ]
+    },
+
+    {
+        "id": "be66f599a75cf7766443463dd9aab9e798892027eaa9d0d507a0c7e632061c52",
+        "name": "Mergers & Acquisitions",
+        "description": "The Mergers & Acquisitions Team. The Mergers & Acquisitions team at Barclays advises clients on strategic transactions, such as mergers, acquisitions, divestitures, and joint ventures, to help them achieve their business objectives, enhance shareholder value, and drive growth.",
+        "child_buckets": []
+    },
+    {
+        "id": "7d4c8dd3fb2729e74bf7c9b67ef37376b0435e362d2d78e02eb5408ee9eb6710",
+        "name": "Capital Markets",
+        "description": "The Capital Markets Team. The Capital Markets team at Barclays facilitates the buying and selling of financial securities, such as stocks, bonds, and derivatives, to raise capital, manage risk, and provide liquidity to investors and issuers in the global financial markets.",
+        "child_buckets": []
+    },
+    {
+        "id": "209e837d01fff79628891672fee6ee48521b5e517759e58ea4ca93932dd9ddc2",
+        "name": "Corporate Finance",
+        "description": "The Corporate Finance Team. The Corporate Finance team at Barclays offers financial advisory services, debt and equity financing solutions, and capital structure optimization strategies to corporate clients, supporting their growth, expansion, and financial sustainability.",
+        "child_buckets": []
+    },
+
+    {
+        "id": "99c444f4c1a9a41c6d1ec67e0ca6a9d4f79a8b489ce95c8235673590cd31b457",
+        "name": "Savings Accounts",
+        "description": "The Savings Accounts Team. The Savings Accounts team at Barclays manages savings products and services, such as savings accounts, certificates of deposit, and money market accounts, to help customers save and grow their money, achieve financial security, and plan for the future.",
+        "child_buckets": []
+    },
+    {
+        "id": "9be66b076b9c23a189a592f427d08c8cfc68dc0ab546da40841e635359bb258f",
+        "name": "Mortgages",
+        "description": "The Mortgages Team. The Mortgages team at Barclays offers mortgage loans and financing options to help customers purchase or refinance homes, providing competitive rates, flexible terms, and personalized guidance to support their homeownership goals and financial well-being.",
+        "child_buckets": []
+    },
+    {
+        "id": "b991de5d014109f060aede7bdb315952a01029706bee4471208a231ec5b421fb",
+        "name": "Loans",
+        "description": "The Loans Team. The Loans team at Barclays provides personal and business loans, lines of credit, and financing solutions to help customers meet their financial needs, fund projects, and achieve their goals, with competitive rates, flexible terms, and efficient processing.",
+        "child_buckets": []
+    },
+
+    {
+        "id": "14b007dff3babb220c8be6701b76fa73c13ac5a3a4a5f91533523fa55f5bab54",
+        "name": "Commercial Loans",
+        "description": "The Commercial Loans Team. The Commercial Loans team at Barclays offers financing solutions to businesses, such as term loans, revolving lines of credit, and equipment financing, to support their growth, expansion, and working capital needs, with competitive rates and flexible terms.",
+        "child_buckets": []
+    },
+    {
+        "id": "187ef63e1c19abd39043b4584a56f9b777dcfad9c1940a95b42471ac8baa8deb",
+        "name": "Trade Finance",
+        "description": "The Trade Finance Team. The Trade Finance team at Barclays provides trade finance solutions, such as letters of credit, trade guarantees, and export financing, to facilitate international trade transactions, manage risks, and support importers and exporters in their business activities.",
+        "child_buckets": []
+    },
+    {
+        "id": "555d3ef4046f83936ab73d4a8342f8a7b4bbec0e11e128dbf84beda8d15a8526",
+        "name": "Cash Management",
+        "description": "The Cash Management Team. The Cash Management team at Barclays offers cash management services, such as treasury solutions, payment processing, and liquidity management, to help businesses optimize their cash flow, manage working capital, and streamline their financial operations.",
+        "child_buckets": []
+    },
+
+    {
+        "id": "ce0cff719a94747617230dde819ab25812021d6b80c236bf0c6891c0d46e45be",
+        "name": "Infrastructure",
+        "description": "The Infrastructure Team. The Infrastructure team at Barclays manages the bank's IT infrastructure, including networks, servers, and data centers, to ensure reliable and secure operations, support business applications, and enable digital services for customers and employees.",
+        "child_buckets": []
+    },
+    {
+        "id": "ff9d19447fd46f91ac3e032c2be86153c5c7854b932fe4e225a531c51f696659",
+        "name": "Application Development",
+        "description": "The Application Development Team. The Application Development team at Barclays designs, develops, and maintains software applications and digital solutions to support the bank's business operations, enhance customer experiences, and drive innovation in financial services.",
+        "child_buckets": []
+    },
+    {
+        "id": "13663f3ce0c7a4f764384060d266bffa98cd50d452d3b5ae315c00bd1c91c712",
+        "name": "IT Support",
+        "description": "The IT Support Team. The IT Support team at Barclays provides technical assistance, troubleshooting, and helpdesk services to resolve IT issues, support end-users, and ensure the smooth functioning of technology systems and services across the bank.",
+        "child_buckets": []
+    },
+
+    {
+        "id": "8aa0df2a573dd579c5c020ce4aa74b198f74e1295dfa46ba8e8e4ff15e5dfe26",
+        "name": "Regulatory Compliance",
+        "description": "The Regulatory Compliance Team. The Regulatory Compliance team at Barclays monitors and enforces compliance with laws, regulations, and industry standards, ensuring that the bank's operations and activities adhere to legal requirements, ethical practices, and risk management guidelines.",
+        "child_buckets": []
+    },
+    {
+        "id": "ee1a7d054d102c8ee3c892f2b5235b563d64d3605932f8c46d3c1fff00a129d2",
+        "name": "Anti-Money Laundering",
+        "description": "The Anti-Money Laundering Team. The Anti-Money Laundering team at Barclays implements policies, procedures, and controls to prevent money laundering.",
+        "child_buckets": []
+    }
+]
