@@ -1,2 +1,3 @@
 *.env
-spam-detection/__pycache__
+**/*/__pycache__
+**/*/env
