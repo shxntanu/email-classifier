@@ -1,12 +1,10 @@
 import imaplib
 import email
-import os
-from info import get_email_body
+import requests
+from .info import get_email_body
 import time
-from dotenv import load_dotenv
-load_dotenv()
 
-def listen_for_emails(imap_server, imap_port, email_address, password):
+def listen_for_emails(imap_server, imap_port, email_address, password, url):
     """
     Listens for incoming emails on the specified email account and prints the subject and contents of new emails.
 
@@ -15,6 +13,7 @@ def listen_for_emails(imap_server, imap_port, email_address, password):
         imap_port (int): IMAP server port number.
         email_address (str): Email address.
         password (str): Email password.
+        url (str): Endpoint URL to hit with the latest email data.
     """
     imap = imaplib.IMAP4_SSL(imap_server, imap_port)
     imap.login(email_address, password)
@@ -36,10 +35,13 @@ def listen_for_emails(imap_server, imap_port, email_address, password):
                     print("Subject:", subject)
                     print("Body:", body)
 
-        # TODO: Add logic here to hit an endpoint with the latest email data
+                    # Hit an endpoint with the latest email data
+                    data = {'subject': subject, 'body': body}
+                    response = requests.post(url, json=data)
+                    print("Response:", response.text)
 
         print("Waiting for new emails...")
         time.sleep(10)
 
 # Example usage
-listen_for_emails('imap.gmail.com', 993, os.environ["EMAIL_ID"], os.environ["EMAIL_APP_PASSWORD"])
+# listen_for_emails('imap.gmail.com', 993, os.environ["EMAIL_ID"], os.environ["EMAIL_APP_PASSWORD"])
