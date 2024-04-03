@@ -3,7 +3,12 @@ import email
 from email import message_from_bytes
 from email.message import EmailMessage
 
-def get_email_body(msg):
+def get_email_body(msg: EmailMessage) -> str:
+    """
+    Extracts the body of an email message.
+    Note: This function does NOT return the raw body, it return the parsed body in plain text form.
+    """
+
     body = ""
     if msg.is_multipart():
         for part in msg.walk():
@@ -14,7 +19,7 @@ def get_email_body(msg):
         body = msg.get_payload(decode=True).decode(msg.get_content_charset())
     return body
 
-def LatestEmailMessage(imap_server, imap_port, email, password) -> EmailMessage:
+def latest_email_message(imap_server, imap_port, email, password) -> EmailMessage:
     """
     Fetches the latest email from the specified email account using IMAP.
 
@@ -26,6 +31,14 @@ def LatestEmailMessage(imap_server, imap_port, email, password) -> EmailMessage:
 
     Returns:
         email.message.EmailMessage: The latest email message.
+
+    You can access the sender, subject, and body of the email using the following properties:
+    ```
+        sender = msg['From']
+        subject = msg['Subject']
+        body = get_email_body(msg)
+    ```
+
     """
     # Log in to the IMAP server
     imap = imaplib.IMAP4_SSL(imap_server, imap_port)
@@ -34,9 +47,12 @@ def LatestEmailMessage(imap_server, imap_port, email, password) -> EmailMessage:
 
     # Search for the latest email
     _, data = imap.search(None, 'ALL')
-    latest_email_id = data[0].split()[-1]
-
-    # Fetch the latest email
+    email_ids = data[0].split()
+    if not email_ids:
+        print("No emails found. Inbox is empty.")
+        return None
+    
+    latest_email_id = email_ids[-1]
     typ, data = imap.fetch(latest_email_id, '(RFC822)')
     raw_email = data[0][1]
     email_message = message_from_bytes(raw_email)
@@ -44,9 +60,9 @@ def LatestEmailMessage(imap_server, imap_port, email, password) -> EmailMessage:
     imap.close()
     imap.logout()
     
-    return email_message
+    return data, email_message
 
-def LatestEmailInfo(email_id: str, password: str) -> tuple:
+def get_ssb(email_id: str, password: str) -> tuple:
     """
     Fetch the latest email's sender, subject, and body.
     `email_id`: Email ID
@@ -55,23 +71,7 @@ def LatestEmailInfo(email_id: str, password: str) -> tuple:
     return: Tuple of sender, subject, and body
     """
 
-    mail = imaplib.IMAP4_SSL('imap.gmail.com')
-    mail.login(email_id, password)
-    mail.select('inbox')
-    _, data = mail.search(None, 'ALL')
-    email_ids = data[0].split()
-
-    if not email_ids:
-        print("No emails found. Inbox is empty.")
-        return None
-
-    latest_email_id = email_ids[-1]  # Get the latest email ID
-    _, data = mail.fetch(latest_email_id, '(RFC822)')
-    raw_email = data[0][1]
-    mail.close()
-    mail.logout()
-
-    msg = email.message_from_bytes(raw_email)
+    msg = latest_email_message('imap.gmail.com', 993, email_id, password)
 
     sender = msg['From']
     subject = msg['Subject']
@@ -79,7 +79,7 @@ def LatestEmailInfo(email_id: str, password: str) -> tuple:
 
     return sender, subject, body
 
-def RAWEmail(email_id: str, password: str) -> str:
+def RAWEmail(email_id: str, password: str, imap_server: str = 'imap.gmail.com', imap_port: int = 993) -> str:
     """
     Fetch the raw email.
 
@@ -89,20 +89,5 @@ def RAWEmail(email_id: str, password: str) -> str:
     return: Raw email
     """
     
-    mail = imaplib.IMAP4_SSL('imap.gmail.com')
-    mail.login(email_id, password)
-    mail.select('inbox')
-    _, data = mail.search(None, 'ALL')
-    email_ids = data[0].split()
-
-    if not email_ids:
-        print("No emails found. Inbox is empty.")
-        return None
-
-    latest_email_id = email_ids[-1]  # Get the latest email ID
-    _, data = mail.fetch(latest_email_id, '(RFC822)')
-    raw_email = data[0][1]
-    mail.close()
-    mail.logout()
-
+    raw_email, _ = latest_email_message(imap_server, imap_port, email_id, password)
     return raw_email.decode('utf-8')
