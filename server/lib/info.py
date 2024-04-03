@@ -1,5 +1,4 @@
 import imaplib
-import email
 from email import message_from_bytes
 from email.message import EmailMessage
 
@@ -62,32 +61,23 @@ def latest_email_message(imap_server, imap_port, email, password):
     
     return data, email_message
 
-def get_ssb(email_id: str, password: str) -> tuple:
+def get_ssb(mail: EmailMessage) -> tuple:
     """
-    Fetch the latest email's sender, subject, and body.
-    `email_id`: Email ID
-    `password`: Email password (App password for Gmail)
+    Fetch the sender, subject, and body of an email.
 
     return: Tuple of sender, subject, and body
     """
 
-    msg = latest_email_message('imap.gmail.com', 993, email_id, password)
-
-    sender = msg['From']
-    subject = msg['Subject']
-    body = get_email_body(msg)
+    sender = mail['From']
+    subject = mail['Subject']
+    body = get_email_body(mail)
 
     return sender, subject, body
 
-def RAWEmail(email_id: str, password: str, imap_server: str = 'imap.gmail.com', imap_port: int = 993) -> str:
+def RAWEmail(mail: EmailMessage) -> str:
     """
     Fetch the raw email.
 
-    `email_id`: Email ID
-    `password`: Email password (App password for Gmail)
-
     return: Raw email
     """
-    
-    raw_email, _ = latest_email_message(imap_server, imap_port, email_id, password)
-    return raw_email.decode('utf-8')
+    return mail.decode('utf-8')
