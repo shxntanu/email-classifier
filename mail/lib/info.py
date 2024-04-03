@@ -58,7 +58,7 @@ def LatestEmailInfo(email_id: str, password: str) -> tuple:
     mail = imaplib.IMAP4_SSL('imap.gmail.com')
     mail.login(email_id, password)
     mail.select('inbox')
-    result, data = mail.search(None, 'ALL')
+    _, data = mail.search(None, 'ALL')
     email_ids = data[0].split()
 
     if not email_ids:
@@ -66,7 +66,7 @@ def LatestEmailInfo(email_id: str, password: str) -> tuple:
         return None
 
     latest_email_id = email_ids[-1]  # Get the latest email ID
-    result, data = mail.fetch(latest_email_id, '(RFC822)')
+    _, data = mail.fetch(latest_email_id, '(RFC822)')
     raw_email = data[0][1]
     mail.close()
     mail.logout()
@@ -106,5 +106,3 @@ def RAWEmail(email_id: str, password: str) -> str:
     mail.logout()
 
     return raw_email.decode('utf-8')
-
-    
