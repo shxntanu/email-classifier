@@ -19,7 +19,7 @@ def get_email_body(msg: EmailMessage) -> str:
         body = msg.get_payload(decode=True).decode(msg.get_content_charset())
     return body
 
-def latest_email_message(imap_server, imap_port, email, password) -> EmailMessage:
+def latest_email_message(imap_server, imap_port, email, password) -> tuple[imaplib._AnyResponseData, EmailMessage]:
     """
     Fetches the latest email from the specified email account using IMAP.
 
