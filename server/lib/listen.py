@@ -1,10 +1,9 @@
 import imaplib
 import email
 import os
-from dotenv import load_dotenv
 from info import get_email_body
 import time
-
+from dotenv import load_dotenv
 load_dotenv()
 
 def listen_for_emails(imap_server, imap_port, email_address, password):
