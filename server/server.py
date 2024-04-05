@@ -2,13 +2,27 @@ from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import os
 from threading import Thread
+from email import message_from_string
 from dotenv import load_dotenv
 load_dotenv()
-from lib.listen import listen_for_emails
+
+from lib.listen import listen_for_emails, listen_raw_emails
 from lib.spam_filter import preprocess_text, spam_model, EmailInput
+from lib.attachment import extract_attachment_text
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/attachments', methods=['POST'])
+def extract_attachments():
+    """
+    Endpoint to extract text from email attachments.
+    """
+    data = request.json
+    print("Received attachment data:", data)
+    email_message = message_from_string(data["raw_email"])
+    attachment_text = extract_attachment_text(email_message)
+    return jsonify({"attachment_text": attachment_text})
 
 @app.route('/email_data', methods=['POST'])
 def receive_email_data():
@@ -48,12 +62,12 @@ def detect_spam():
 def start():
     # Email listening in a background thread
     email_thread = Thread(
-        target=listen_for_emails, 
+        target=listen_raw_emails, 
         args=(
             'imap.gmail.com', 
             993, os.environ["EMAIL_ID"], 
             os.environ["EMAIL_APP_PASSWORD"], 
-            "http://localhost:5000/email_data"
+            "http://localhost:5000/attachments"
         )
     )
     email_thread.start()
