@@ -1,0 +1,202 @@
+{
+    "root": {
+        "name": "Barclays Bank Emails",
+        "description": "Root node representing all emails received in Barclays bank.",
+        "emails": [],
+        "children": [
+            {
+                "name": "Executive Leadership",
+                "description": "The Executive Leadership Team at Barclays comprises the Board of Directors, CEO, CFO, General Counsel, Board Secretary, and Internal Audit Team. They collectively oversee strategic direction, governance, financial management, legal matters, and internal controls to drive the bank's success and ensure compliance with regulations.",
+                "emails": [],
+                "children": [
+                    {
+                        "name": "CEO",
+                        "description": "The CEO, or Chief Executive Officer, is the highest-ranking executive in Barclays, responsible for providing overall leadership, vision, and direction to the organization. They oversee the implementation of strategic initiatives, drive business growth, and ensure the company's success in achieving its goals and objectives.",
+                        "emails": ["ceo@barclays.in"],
+                        "children": []
+                    },
+                    {
+                        "name": "CFO",
+                        "description": "The CFO, or Chief Financial Officer, is responsible for overseeing the financial operations of Barclays, including financial planning, budgeting, reporting, and analysis. They play a key role in strategic decision-making, risk management, and ensuring the bank's financial health and stability.",
+                        "emails": ["cfo@barclays.in"],
+                        "children": []
+                    },
+                    {
+                        "name": "General Counsel",
+                        "description": "The General Counsel is the chief legal officer of Barclays, responsible for overseeing all legal matters, compliance, and regulatory affairs. They provide legal advice and guidance to the bank's leadership team, manage legal risks, and ensure compliance with laws and regulations.",
+                        "emails": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Board of Directors",
+                        "description": "The Board of Directors is a group of individuals elected by Barclays' shareholders to oversee the bank's management and operations. They provide strategic guidance, set policies, and make key decisions to ensure the bank's long-term success and sustainability.",
+                        "emails": [
+                            "anujgupta.audit@barclays.com",
+                            "sanjayjoshi.board@barclays.com",
+                            "aartipatel.board@barclays.com"
+                        ],
+                        "children": []
+                    },
+                    {
+                        "name": "Board Secretary",
+                        "description": "The Board Secretary is responsible for managing the administrative and governance functions of the Board of Directors. They coordinate board meetings, maintain corporate records, and ensure compliance with legal and regulatory requirements.",
+                        "emails": ["secretary.board@barclays.in"],
+                        "children": []
+                    },
+                    {
+                        "name": "Internal Audit Team",
+                        "description": "The Internal Audit Team is responsible for independently assessing and evaluating Barclays' internal controls, risk management processes, and compliance with policies and regulations. They provide assurance to the Board of Directors and senior management on the effectiveness of the bank's governance and risk management practices.",
+                        "emails": [
+                            "nishadesai.audit@barclays.in",
+                            "priyapatel.audit@barclays.in",
+                            "rajeshkumar.audit@barclays.in"
+                        ],
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "name": "Government Relations",
+                "description": "The Government Relations Team at Barclays is responsible for managing the bank's relationships with government agencies, policymakers, and regulatory authorities. They engage with key stakeholders to advocate for the bank's interests, influence public policy, and ensure compliance with laws and regulations.",
+                "emails": [
+                    "sameergupta.gr@barclays.com",
+                    "arjunpatel.gr@barclays.com",
+                    "nehasharma.gr@barclays.com"
+                ],
+                "children": []
+            },
+            {
+                "name": "HR",
+                "description": "Human Resources department responsible for managing employee-related matters.",
+                "emails": ["hr@barclays.com"],
+                "children": [
+                    {
+                        "name": "Recruitment",
+                        "description": "Responsible for hiring new emails.",
+                        "emails": ["recruitment@barclays.com"],
+                        "children": []
+                    },
+                    {
+                        "name": "Employee Benefits",
+                        "description": "Handles employee benefits and compensation.",
+                        "emails": ["benefits@barclays.com"],
+                        "children": []
+                    },
+                    {
+                        "name": "Training & Development",
+                        "description": "Responsible for employee training and skill development.",
+                        "emails": ["training@barclays.com"],
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "name": "Finance",
+                "description": "Finance department responsible for financial operations.",
+                "employees": ["finance@barclays.com"],
+                "children": [
+                    {
+                        "name": "Investment Banking",
+                        "description": "Handles investment-related activities.",
+                        "employees": ["investmentbanking@barclays.com"],
+                        "children": [
+                            {
+                                "name": "Mergers & Acquisitions",
+                                "description": "Responsible for mergers and acquisitions.",
+                                "employees": ["mna@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Capital Markets",
+                                "description": "Handles capital market transactions.",
+                                "employees": ["capitalmarkets@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Corporate Finance",
+                                "description": "Deals with corporate finance activities.",
+                                "employees": ["corporatefinance@barclays.com"],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Retail Banking",
+                        "description": "Deals with banking services for individual customers.",
+                        "employees": ["retailbanking@barclays.com"],
+                        "children": [
+                            {
+                                "name": "Savings Accounts",
+                                "description": "Handles savings account operations.",
+                                "employees": ["savings@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Mortgages",
+                                "description": "Handles mortgage operations.",
+                                "employees": ["mortgages@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Loans",
+                                "description": "Handles loan operations.",
+                                "employees": ["loans@barclays.com"],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Corporate Banking",
+                        "description": "Deals with banking services for corporate clients.",
+                        "employees": ["corporatebanking@barclays.com"],
+                        "children": [
+                            {
+                                "name": "Commercial Loans",
+                                "description": "Handles commercial loan operations.",
+                                "employees": ["commercialloans@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Trade Finance",
+                                "description": "Handles trade finance operations.",
+                                "employees": ["tradefinance@barclays.com"],
+                                "children": []
+                            },
+                            {
+                                "name": "Cash Management",
+                                "description": "Handles cash management operations.",
+                                "employees": ["cashmanagement@barclays.com"],
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "IT",
+                "description": "Information Technology department responsible for managing technological systems.",
+                "employees": ["it@barclays.com"],
+                "children": [
+                    {
+                        "name": "Infrastructure",
+                        "description": "Manages IT infrastructure.",
+                        "employees": ["infrastructure@barclays.com"],
+                        "children": []
+                    },
+                    {
+                        "name": "Application Development",
+                        "description": "Develops software applications.",
+                        "employees": ["appdev@barclays.com"],
+                        "children": []
+                    },
+                    {
+                        "name": "IT Support",
+                        "description": "Provides IT support services.",
+                        "employees": ["itsupport@barclays.com"],
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+}
