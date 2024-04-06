@@ -4,7 +4,6 @@ import email
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import yagmail
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -75,8 +74,8 @@ def send_email(sender_email, sender_password, recipient_email, subject, body):
     server.sendmail(sender_email, recipient_email, text)
     server.quit()
 
-def read_emails(email, password):
-    mail = imaplib.IMAP4_SSL('imap.gmail.com')
+def read_emails(email, password, imap_server, imap_port):
+    mail = imaplib.IMAP4_SSL(imap_server, imap_port)
     mail.login(email, password)
     mail.select('inbox')
     result, data = mail.search(None, 'ALL')
@@ -112,8 +111,8 @@ def read_subject_and_body(mail_id, password):
     mail.logout()
     return (subject, body)
 
-def fetch_latest_email(email, password):
-    mail = imaplib.IMAP4_SSL('imap.gmail.com')
+def fetch_latest_email(email, password, imap_server, imap_port):
+    mail = imaplib.IMAP4_SSL(imap_server, imap_port)
     mail.login(email, password)
     mail.select('inbox')
     result, data = mail.search(None, 'ALL')
@@ -168,4 +167,5 @@ password = os.environ["EMAIL_APP_PASSWORD"]
 # read_emails(email_id, password)
 # read_subject_and_body(email_id, password)
 
-forward_email(email_id, password, "shantanuwable2003@gmail.com", "Forwarded Subject", "Forwarded Body")
+# forward_email(email_id, password, "shantanuwable2003@gmail.com", "Forwarded Subject", "Forwarded Body")
+# email_message = fetch_latest_email("c2k21107041@ms.pict.edu", "1@M3ss3n1ial", "outlook.office365.com", 993)
