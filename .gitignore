@@ -1,4 +1,8 @@
 *.env
 **/*/__pycache__
 **/*/env
+
+#root
+
 /env
+/__pycache__
