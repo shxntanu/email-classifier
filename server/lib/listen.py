@@ -2,6 +2,7 @@ import imaplib
 import email
 import requests
 from .info import get_email_body
+from .spam_filter import preprocess_text, spam_model, EmailInput
 import time
 
 def listen_for_emails(imap_server, imap_port, email_address, password, url):
@@ -38,7 +39,7 @@ def listen_for_emails(imap_server, imap_port, email_address, password, url):
                     # Hit an endpoint with the latest email data
                     data = {'subject': subject, 'body': body}
                     response = requests.post(url, json=data)
-                    print("Response:", response.text)
+                    print("Response: ", response)
 
         print("Waiting for new emails...")
         time.sleep(10)
@@ -64,7 +65,7 @@ def listen_raw_emails(imap_server, imap_port, email_address, password, url):
                     email_message = email.message_from_bytes(raw_email)
 
                     # Hit an endpoint with the latest email data
-                    data = {'raw_email': email_message.as_string()}
+                    data = {'raw_email': email_message}
                     response = requests.post(url, json=data)
                     print("Response:", response.text)
 
