@@ -2,7 +2,7 @@ import requests
 import json
 
 # url = "http://localhost:5000/threat"
-url = "http://localhost:5000/classify"
+url = "http://localhost:9000/classify"
 
 headers = {
     'Content-Type': 'application/json'
@@ -13,8 +13,11 @@ headers = {
 # }
 
 data = {
-    "content": "this is very urgent that the march 2002 settlement agreement following is an analysis of the change in net revenue comparing 2003 to 2002. ."
+    "content": "These discrepancies not only disrupt my ability to track and manage my finances accurately but also raise concerns about the reliability and integrity of the online banking system."
 }
+
+response = requests.post(url, headers=headers, data=json.dumps(data))
+print(response.json())
 
 try:
     response = requests.post(url, headers=headers, data=json.dumps(data))
