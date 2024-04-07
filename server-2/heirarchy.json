@@ -1,0 +1,92 @@
+[
+    {
+      "department_name": "technology",
+      "department_mail": "yarndev.tech@outlook.com",
+      "subDepartments": [
+        {
+          "sentiment_name": "complaint",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "urgent",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "query",
+          "subDepartment_mail": ""
+        }
+      ]
+    },
+    {
+      "department_name": "finance",
+      "department_mail": "yarndev.finance@outlook.com",
+      "subDepartments": [
+        {
+          "sentiment_name": "complaint",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "urgent",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "query",
+          "subDepartment_mail": ""
+        }
+      ]
+    },
+    {
+      "department_name": "pharmaceuticals",
+      "department_mail": "yarndev.pharma@outlook.com",
+      "subDepartments": [
+        {
+          "sentiment_name": "complaint",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "urgent",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "query",
+          "subDepartment_mail": ""
+        }
+      ]
+    },
+    {
+      "department_name": "energy",
+      "department_mail": "yarndev.energy@outlook.com",
+      "subDepartments": [
+        {
+          "sentiment_name": "complaint",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "urgent",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "query",
+          "subDepartment_mail": ""
+        }
+      ]
+    },
+    {
+      "department_name": "travel",
+      "department_mail": "yarndev.travel@outlook.com",
+      "subDepartments": [
+        {
+          "sentiment_name": "complaint",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "urgent",
+          "subDepartment_mail": ""
+        },
+        {
+          "sentiment_name": "query",
+          "subDepartment_mail": ""
+        }
+      ]
+    }
+  ]
