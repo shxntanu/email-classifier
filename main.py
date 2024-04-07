@@ -50,6 +50,11 @@ while True:
                     
                 else:
                     print("Not spam!")
+
+                    # TODO: Send email contents to LLM and get receiver list
+
+                    # TODO: Search in DB for the department name received by LLM
+
                     raw_email = email_message.as_string()
                     # forward_email(raw_email, smtp_server, smpt_port, email_id, email_password, fw_mail_id) 
                     forward_email.delay(raw_email, smtp_server, smpt_port, email_id, email_password, fw_mail_id)                
