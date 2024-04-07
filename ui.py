@@ -3,6 +3,8 @@ import requests
 from cryptography.fernet import Fernet
 import json
 
+heirarchy = json.loads(open('data/bigrag.json').read())
+
 def encrypt_text(key, text):
     cipher_suite = Fernet(key)
     encrypted_text = cipher_suite.encrypt(text.encode())
@@ -32,7 +34,13 @@ if st.button('Submit'):
     response = requests.post(url, data = json.dumps(data), headers=headers)
     st.write(response.status_code)
     d = response.json()
-    st.text_area('Response', value=response.json(), height=200)
+    print("D: ", d)
+    val = 0
+    for node in heirarchy["nodes"]:
+        if "id" in node and node["id"] == d["team"]:
+            val = node["name"]
+
+    st.text_area('Response', value=val, height=200)
     print(response.text)
 
     key = Fernet.generate_key()
