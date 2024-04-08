@@ -59,3 +59,4 @@ Our solution works as follows:
 7. **Summarization**: The email is then summarized by a lighter model, and the summary is sent back to the service.
 8. **Message Composition**: The service then composes a new email with the summary (for quick reference) and the sentiment (e.g. Urgent, Complaint, Neutral) and the original email (along with attachments), and sends it back to the root node.
 9. **Routing**: The full email is then routed to the respective department/team/person through the SMTP Protocol.
+10. **Feedback System**: The system also has a feedback system, where in the case of incorrect routing, the user can provide feedback, which is then used to retrain the model.
