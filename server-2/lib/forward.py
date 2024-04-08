@@ -67,9 +67,12 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         else:
             continue
 
-    summary = summarize_email(html_part if html_part else email_message.get_payload(decode=True).decode(email_message.get_content_charset()))
-    summary_html = f"<p style='font-size: 1.2em; font-weight: bold; font-style: italic;'>Email Summary:<br>{summary}</p>"
-    forwarded_email.attach(MIMEText(summary_html, 'html'))
+    try:
+        summary = summarize_email(html_part if html_part else email_message.get_payload(decode=True).decode(email_message.get_content_charset()))
+        summary_html = f"<p style='font-size: 1.2em; font-weight: bold; font-style: italic;'>Email Summary:<br>{summary}</p>"
+        forwarded_email.attach(MIMEText(summary_html, 'html'))
+    except:
+        pass
 
     if html_part:
         forwarded_email.attach(MIMEText(html_part, 'html'))
@@ -93,7 +96,6 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
 
     # TODO: Add a section for feedback on the basis of email sent (galti se bhej diya?)
 
-    # Connect to SMTP server and send the email
     with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         smtp.starttls()
         smtp.login(smtp_email, smtp_password)
