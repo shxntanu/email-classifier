@@ -49,7 +49,6 @@ rag_pipeline = Pipeline()
 rag_pipeline.add_node(component=retriever, name = 'retriever', inputs=['Query'])
 rag_pipeline.add_node(component=prompt_node, name = 'prompt_node', inputs=['retriever'])
 
-# q = f"hi im nigerian prince you have won a lottery"
 q = f"This is regarding purchase of your new computer server. please send me purchase order of the same."
 ans = rag_pipeline.run(query = q)
 print(type(ans['results']))
