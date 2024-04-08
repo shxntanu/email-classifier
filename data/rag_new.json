@@ -1,0 +1,46 @@
+{
+    "root":{
+        "child": ["HR", "IT", "Finance", "Customer Service"],
+        "is_leaf": 0
+    },
+    "HR":{
+        "child": ["Talent aquisition", "Diversity, Equity, and Inclusion"],
+        "is_leaf": 0
+    },
+    "IT":{
+        "child": ["Software Development", "Security"],
+        "is_leaf": 0
+    },
+    "Finance":{
+        "child": ["Accounting", "Treasury"],
+        "is_leaf": 0
+    },
+    "Customer Service":{
+        "child": ["alice@gmail.com", "bob@gmail.com"],
+        "is_leaf": 1
+    },
+    "Talent aquisition":{
+        "child": ["charlie@gmail.com", "dede@gmail.com"],
+        "is_leaf": 0
+    },
+    "Diversity, Equity, and Inclusion":{
+        "child": ["iliza@gmail.com", "jake@gmail.com"],
+        "is_leaf": 1
+    },
+    "Software Development":{
+        "child": ["kriss@gmail.com", "lana@gmail.com"],
+        "is_leaf": 1
+    },
+    "Security":{
+        "child": ["merry@gmail.com", "nina@gmail.com"],
+        "is_leaf": 1
+    },
+    "Accounting":{
+        "child": ["george@gmail.com", "harry@gmail.com"],
+        "is_leaf": 1
+    },
+    "Treasury":{
+        "child": ["eran@gmail.com", "ferb@gmail.com"],
+        "is_leaf": 1
+    }
+}

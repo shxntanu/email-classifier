@@ -1,5 +1,6 @@
 *.env
 **/*/__pycache__
+**/*/node_modules
 **/*/env
 
 #root
