@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import os
 from threading import Thread
+import requests
 from email import message_from_string
 from dotenv import load_dotenv
 load_dotenv()
@@ -9,6 +10,30 @@ load_dotenv()
 from lib.listen import listen_for_emails, listen_raw_emails
 from lib.spam_filter import preprocess_text, spam_model, EmailInput
 from lib.attachment import extract_attachment_text
+
+imap_server = "imap.gmail.com"
+imap_port = 993
+smtp_server = "smtp.gmail.com"
+smtp_port = 587
+email_id = os.environ["EMAIL_ID"]
+email_app_password = os.environ["EMAIL_APP_PASSWORD"]
+fwd_email_id = os.environ["FWD_EMAIL_ID"]
+
+
+# @app.route('/email_data', methods=['POST'])
+# def receive_email_data():
+#     """
+#     Endpoint to receive email data.
+#     """
+
+#     data = request.json
+#     print("Received email data:", data)
+#     email_text = f'Subject:  {data["subject"]}\n{data["body"]}'
+#     response = requests.post("http://localhost:5000/predict", json={email_text: email_text})
+#     print("Response from spam detection model:", response.json())
+#     return jsonify({"status": "success"})
+
+#     # TODO: Implement sending data to Mixtral Model here
 
 app = Flask(__name__)
 CORS(app)
@@ -31,8 +56,8 @@ def receive_email_data():
     """
 
     data = request.json
-    print("Received email data:", data)
-    return jsonify({"message": "Email data received successfully"})
+    
+    return jsonify({"message": "Email data received successfully"}), 200
 
     # TODO: Implement sending data to Mixtral Model here
 
@@ -62,12 +87,12 @@ def detect_spam():
 def start():
     # Email listening in a background thread
     email_thread = Thread(
-        target=listen_raw_emails, 
+        target=listen_for_emails, 
         args=(
             'imap.gmail.com', 
             993, os.environ["EMAIL_ID"], 
             os.environ["EMAIL_APP_PASSWORD"], 
-            "http://localhost:5000/attachments"
+            "http://localhost:5000/email_data"
         )
     )
     email_thread.start()

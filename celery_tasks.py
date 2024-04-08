@@ -1,11 +1,14 @@
+from celery import Celery
+celery_app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
-from email import message_from_string
 from email.header import decode_header
 from email.message import EmailMessage
+from email import message_from_string
 
 def decode_subject(subject):
     """
@@ -26,6 +29,7 @@ def decode_subject(subject):
             decoded_subject.append(part)
     return ''.join(decoded_subject)
 
+@celery_app.task
 def forward_email(email_message, smtp_server: str, smtp_port: int, smtp_email: str, smtp_password: str, forward_to: str, cc_to: list = [], bcc_to: list = []) -> None:
     """
     Forwards an email message to the specified recipient using SMTP while maintaining the formatting of the original message.
@@ -43,7 +47,7 @@ def forward_email(email_message, smtp_server: str, smtp_port: int, smtp_email: s
     forwarded_email = MIMEMultipart()
     forwarded_email['From'] = smtp_email
     forwarded_email['To'] = forward_to
-    if cc_to:
+    if cc_to != None:
         forwarded_email['CC'] = ', '.join(cc_to)
     forwarded_email['Subject'] = f"Fwd from EC: {decode_subject(email_message['Subject'])}" # EC = Email Classifier
 

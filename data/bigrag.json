@@ -1,0 +1,158 @@
+{
+    "nodes": [
+        {
+            "name": "root",
+            "description": "Root node representing all emails received by Barclays bank.",
+            "is_leaf": false,
+            "children": ["Government Relations", "HR", "Finance", "IT"]
+        },
+        {
+            "name": "Government Relations",
+            "id": 8,
+            "description": "The Government Relations Team at Barclays manages the bank's relationships with government agencies, policymakers, and regulatory authorities. They advocate for the bank's interests, influence public policy, and ensure compliance with laws and regulations.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "HR",
+            "description": "The Human Resources department is responsible for managing employee-related matters, including recruitment, benefits, training, and development.",
+            "is_leaf": false,
+            "children": ["Recruitment", "Employee Benefits", "Training & Development"]
+        },
+        {
+            "name": "Recruitment",
+            "id": 10,
+            "description": "The Recruitment team is responsible for hiring new talent to meet the staffing needs of Barclays.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Employee Benefits",
+            "id": 11,
+            "description": "The Employee Benefits team manages the bank's compensation and benefits packages to ensure employee satisfaction and retention.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Training & Development",
+            "id": 12,
+            "description": "The Training & Development team is responsible for enhancing employee skills and capabilities through training programs and professional development opportunities.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Finance",
+            "description": "The Finance department oversees the financial operations of Barclays, including investment banking, retail banking, and corporate banking.",
+            "is_leaf": false,
+            "children": ["Investment Banking", "Retail Banking", "Corporate Banking"]
+        },
+        {
+            "name": "Investment Banking",
+            "description": "The Investment Banking division handles a range of investment-related activities, including mergers & acquisitions, capital markets, and corporate finance.",
+            "is_leaf": false,
+            "children": ["Mergers & Acquisitions", "Capital Markets", "Corporate Finance"]
+        },
+        {
+            "name": "Mergers & Acquisitions",
+            "id": 15,
+            "description": "The Mergers & Acquisitions team is responsible for identifying and facilitating strategic mergers, acquisitions, and divestitures to support Barclays' growth objectives.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Capital Markets",
+            "id": 16,
+            "description": "The Capital Markets team manages transactions involving stocks, bonds, and other financial instruments to raise capital for Barclays and its clients.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Corporate Finance",
+            "id": 17,
+            "description": "The Corporate Finance team provides advisory services and financial solutions to corporate clients, assisting them in capital raising, restructuring, and other strategic initiatives.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Retail Banking",
+            "description": "The Retail Banking division offers a wide range of banking services to individual customers, including savings accounts, mortgages, and loans.",
+            "is_leaf": false,
+            "children": ["Savings Accounts", "Mortgages", "Loans"]
+        },
+        {
+            "name": "Savings Accounts",
+            "id": 19,
+            "description": "The Savings Accounts team manages and promotes various types of savings accounts, helping customers achieve their financial goals.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Mortgages",
+            "id": 20,
+            "description": "The Mortgages team provides home financing solutions, assisting customers in purchasing or refinancing residential properties.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Loans",
+            "id": 21,
+            "description": "The Loans team offers a variety of loan products to meet the borrowing needs of individual and business customers.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Corporate Banking",
+            "description": "The Corporate Banking division provides customized banking solutions and financial services to corporate clients, including commercial loans, trade finance, and cash management.",
+            "is_leaf": false,
+            "children": ["Commercial Loans", "Trade Finance", "Cash Management"]
+        },
+        {
+            "name": "Commercial Loans",
+            "id": 23,
+            "description": "The Commercial Loans team specializes in providing financing solutions to businesses for expansion, operations, and other capital needs.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Trade Finance",
+            "id": 24,
+            "description": "The Trade Finance team facilitates international trade transactions by providing financing, risk mitigation, and other related services to importers and exporters.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Cash Management",
+            "id": 25,
+            "description": "The Cash Management team offers a suite of services to help corporate clients optimize their cash flow, manage liquidity, and streamline financial operations.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "IT",
+            "description": "The Information Technology department is responsible for managing and maintaining Barclays' technological infrastructure, application development, and IT support services.",
+            "is_leaf": false,
+            "children": ["Infrastructure", "Application Development", "IT Support"]
+        },
+        {
+            "name": "Infrastructure",
+            "id": 27,
+            "description": "The Infrastructure team manages and maintains the IT infrastructure, including servers, networks, and data centers, to ensure optimal performance and reliability.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "Application Development",
+            "id": 28,
+            "description": "The Application Development team designs, develops, and maintains software applications that support Barclays' business operations and customer services.",
+            "is_leaf": true,
+            "children": []
+        },
+        {
+            "name": "IT Support",
+            "id": 29,
+            "description": "The IT Support team provides technical assistance and troubleshooting services to Barclays' employees, ensuring smooth and uninterrupted access to IT resources.",
+            "is_leaf": true,
+            "children": []
+        }
+    ]
+}
