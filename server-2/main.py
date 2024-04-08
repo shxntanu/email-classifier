@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from lib.info import get_email_body
-# from lib.forward import forward_email
-from tasks import forward_email
+from lib.forward import forward_email
+# from tasks import forward_email
 from lib.attachment import extract_attachments
 
 def encrypt_text(key, text):
@@ -26,6 +26,13 @@ smtp_server = os.environ["OUTLOOK_SMTP_SERVER"]
 smpt_port = os.environ["OUTLOOK_SMTP_PORT"]
 email_id = os.environ["OUTLOOK_EMAIL_ID"]
 email_password = os.environ["OUTLOOK_EMAIL_PASSWORD"]
+
+# imap_server = os.environ["GMAIL_IMAP_SERVER"]
+# imap_port = os.environ["GMAIL_IMAP_PORT"]
+# smtp_server = os.environ["GMAIL_SMTP_SERVER"]
+# smpt_port = os.environ["GMAIL_SMTP_PORT"]
+# email_id = os.environ["GMAIL_EMAIL_ID"]
+# email_password = os.environ["GMAIL_APP_PASSWORD"]
 
 LLM_URL = "http://192.168.45.165:5000/classify"
 
@@ -101,15 +108,17 @@ while True:
                                     bcc = []
                                     break
 
-
+                cc.append("shantanuwable2003@gmail.com")
                 print("Forwarding to:", fwd_email)
                 print("CC:", *cc, sep=", ")
                 print("BCC:", *bcc, sep=", ")
 
                 # TODO: Search in DB for the department name received by LLM
 
-                forward_email.delay(email_message.as_string(), smtp_server, smpt_port, email_id, email_password, fwd_email, cc, bcc, sentiment) 
-                # forward_email(email_message, smtp_server, smpt_port, email_id, email_password, fwd_email, ["yarndev.barclays@gmail.com"], bcc, sentiment) 
+                # forward_email.delay(email_message.as_string(), smtp_server, smpt_port, email_id, email_password, fwd_email, cc, bcc, sentiment) 
+                # forward_email.delay(email_message.as_string(), smtp_server, smpt_port, email_id, email_password, fwd_email, cc.append("yarndev.barclays@gmail.com"), bcc, sentiment) 
+                forward_email(email_message, smtp_server, smpt_port, email_id, email_password, fwd_email, cc, bcc, sentiment) 
+
 
                 print("Email forwarded successfully!")
                 
