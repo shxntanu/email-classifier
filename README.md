@@ -46,6 +46,9 @@ Auto-email classification will enable significant reduction in manual efforts
 <div align="center">
     <img src="assets/EC Flow Diagram.png" />
     <br />
+
+_Process Flow Diagram_
+    
 </div>
 
 Our solution works as follows:
