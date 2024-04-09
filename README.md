@@ -43,6 +43,8 @@ Auto-email classification will enable significant reduction in manual efforts
 
 ## Solution
 
+> [Demo Video](https://www.youtube.com/watch?v=2kT37tIz6ME)
+
 <div align="center">
     <img src="assets/EC Flow Diagram.png" />
     <br />
