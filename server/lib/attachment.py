@@ -1,32 +1,36 @@
-from email.message import EmailMessage
+import PyPDF2
+import os
 
-def extract_attachment_text(email_message: EmailMessage):
-    """
-    Extracts text content from attachments in an email.
-
-    Args:
-        email_message (email.message.EmailMessage): Email message object.
-
-    Returns:
-        list: List of text content extracted from attachments.
-    """
-    attachment_texts = []
+def extract_attachments(email_message):
+    extracted_texts = []
 
     for part in email_message.walk():
-        if part.get_content_maintype() == 'multipart':
-            continue
-        if part.get('Content-Disposition') is None:
-            continue
+        if part.get_content_disposition() == 'attachment':
+            # Save the attachment to a file
+            filename = part.get_filename()
+            with open(filename, 'wb') as f:
+                f.write(part.get_payload(decode=True))
 
-        filename = part.get_filename()
-        if filename:
-            attachment_text = part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8')
-            attachment_texts.append(attachment_text)
-            print("Attachment text:", attachment_text)
+            # Extract text from the file
+            file_extension = os.path.splitext(filename)[1]
 
-    return attachment_texts
+            if file_extension == '.pdf':
+                pdf_file_obj = open(filename, 'rb')
+                pdf_reader = PyPDF2.PdfReader(pdf_file_obj)
+                text = ''
+                for page_num in range(len(pdf_reader.pages)):
+                    page_obj = pdf_reader.pages[page_num]
+                    text += page_obj.extract_text()
+                pdf_file_obj.close()
+            else:
+                text = None
 
-# Example usage
-# email_message = ...  # Your email message object
-# attachment_texts = extract_attachment_text(email_message)
-# print(attachment_texts)
+            os.remove(filename)
+
+            if text is not None:
+                extracted_texts.append(text)
+
+    return extracted_texts
+
+# example usage
+# print(fetch_latest_mail_extract_attachments('imap.gmail.com', "mail@gmail.com", "your app pswd"))

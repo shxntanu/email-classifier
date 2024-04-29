@@ -1,17 +1,11 @@
 import smtplib
-import os
-from dotenv import load_dotenv
-load_dotenv()
 from email.mime.multipart import MIMEMultipart
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
+from email import message_from_string
 from email.header import decode_header
 from email.message import EmailMessage
-from .summarize import summarize_email
-
-REDIRECT_URL = "http://localhost:3000"
-LOGO_URL = "https://i.ibb.co/P60gmv3/EC-Footer-small.png"
 
 def decode_subject(subject):
     """
@@ -32,7 +26,7 @@ def decode_subject(subject):
             decoded_subject.append(part)
     return ''.join(decoded_subject)
 
-def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int, smtp_email: str, smtp_password: str, forward_to: str, cc_to: list = [], bcc_to: list = [], sentiment="") -> None:
+def forward_email(email_message, smtp_server: str, smtp_port: int, smtp_email: str, smtp_password: str, forward_to: str, cc_to: list = [], bcc_to: list = []) -> None:
     """
     Forwards an email message to the specified recipient using SMTP while maintaining the formatting of the original message.
 
@@ -44,14 +38,14 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         smtp_password (str): Sender's email password.
         forward_to (str): Recipient's email address.
     """
-    # email_message = message_from_string(email_message)
+    email_message = message_from_string(email_message)
     # New email message
     forwarded_email = MIMEMultipart()
     forwarded_email['From'] = smtp_email
     forwarded_email['To'] = forward_to
     if cc_to:
         forwarded_email['CC'] = ', '.join(cc_to)
-    forwarded_email['Subject'] = f"{decode_subject(email_message['Subject'])} - ({sentiment}) Fwd from EC" # EC = Email Classifier
+    forwarded_email['Subject'] = f"Fwd from EC: {decode_subject(email_message['Subject'])}" # EC = Email Classifier
 
     html_part = None
     for part in email_message.walk():
@@ -67,13 +61,6 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         else:
             continue
 
-    try:
-        summary = summarize_email(html_part if html_part else email_message.get_payload(decode=True).decode(email_message.get_content_charset()))
-        summary_html = f"<p style='font-size: 1.2em; font-weight: bold; font-style: italic;'>Email Summary:<br>{summary}</p>"
-        forwarded_email.attach(MIMEText(summary_html, 'html'))
-    except:
-        pass
-
     if html_part:
         forwarded_email.attach(MIMEText(html_part, 'html'))
     else:
@@ -81,29 +68,14 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         text_part = email_message.get_payload(decode=True).decode(email_message.get_content_charset())
         forwarded_email.attach(MIMEText(text_part, 'plain'))
 
-    # # Add a custom string to the email
-    # custom_string = "\n\n-- This email was forwarded using the Email Classifier Service --"
-    # forwarded_email.attach(MIMEText(custom_string, 'plain'))
+    # TODO: Add custom HTML Content for denoting mails forwarded by our service
 
-    html_string = f"""
-    <div style="margin: 0 auto; width: 50%;">
-        <a href="{REDIRECT_URL}">
-            <img src="{LOGO_URL}" alt="Barclays Logo" style="display: block; margin: 0 auto;">
-        </a>
-    </div>
-    """
-    forwarded_email.attach(MIMEText(html_string, 'html'))
+    # Add a custom string to the email
+    custom_string = "\n\n-- This email was forwarded using the Email Classifier Service --"
+    forwarded_email.attach(MIMEText(custom_string, 'plain'))
 
-    # TODO: Add a section for feedback on the basis of email sent (galti se bhej diya?)
-
+    # Connect to SMTP server and send the email
     with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         smtp.starttls()
         smtp.login(smtp_email, smtp_password)
-        smtp.send_message(
-            forwarded_email, 
-            to_addrs=[forward_to] + (cc_to or []) + (bcc_to or [])
-            # forward_to
-        )
-
-
-# https://i.ibb.co/25KTwy6/EC-Footer.png
+        smtp.send_message(forwarded_email, to_addrs=[forward_to] + (cc_to or []) + (bcc_to or []))
