@@ -17,7 +17,7 @@ exceptiongroup==1.2.0
 farm-haystack==1.25.2
 filelock==3.13.3
 Flask==3.0.2
-Flask-Cors==4.0.0
+Flask-Cors==4.0.1
 fonttools==4.51.0
 fsspec==2024.3.1
 googletrans==4.0.0rc1
