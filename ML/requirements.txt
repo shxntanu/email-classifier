@@ -98,4 +98,4 @@ typing_extensions==4.10.0
 tzdata==2024.1
 url-normalize==1.4.3
 urllib3==2.2.1
-Werkzeug==3.0.2
+Werkzeug==3.0.3
