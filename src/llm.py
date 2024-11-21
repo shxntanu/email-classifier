@@ -11,7 +11,9 @@ load_dotenv()
 with open('src/data/rag.json', 'r') as f:
     data = loads(f.read())
 
-docs = [Document(content=str(data))]
+docs = []
+for doc in data['nodes']:
+    docs.append(Document(content=str(doc)))
 
 cleaner = DocumentCleaner()
 ppdocs = cleaner.run(documents=docs)
@@ -30,7 +32,7 @@ template = '''
     
     Context: 
     {% for document in documents %}
-        {{ document.content }};
+        {{ document.content }}
     {% endfor %}
     
     Query: {{ query }}
@@ -41,7 +43,7 @@ template = '''
     
 prompt_builder = PromptBuilder(template=template)
 
-generator = OllamaGenerator(model="qwen:1.8b",
+generator = OllamaGenerator(model="qwen:4b",
                             url = "http://localhost:11434",
                             generation_kwargs={
                               "num_predict": 100,
@@ -63,14 +65,14 @@ def return_ans(query):
     try:
         ans = rag_pipeline.run({"prompt_builder": {"query": query},
 									"retriever": {"query": query}})
-        
+        print(ans)
         response = {
-            "team": int(ans['llm']['replies'][0].strip())
+            "team": ans['llm']['replies'][0].strip()
         }
         return response
     except:
         response = {
-            "team": int(ans['llm']['replies'][0].strip())
+            "team": ans['llm']['replies'][0].strip()
         }
         return response
     
