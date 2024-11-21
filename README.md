@@ -25,7 +25,8 @@ Multiple emails from customers/clients that are dealt with different teams based
 **Other Considerations**:
 
 The data selected should represent sufficient variation to be able to demonstrate classification clearly. Expectation from participants will be to present overall solution with clear focus on characteristics of data and holistic nature of the implementation.
-Data
+
+**Dataset**:
 
 For solving this problem, participants can decide to leverage data available on public forums like Kaggle (preferably from finance domain). But the model should be easy to configure/retrain for similar topics.
 
