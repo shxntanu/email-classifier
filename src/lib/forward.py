@@ -1,6 +1,3 @@
-from celery import Celery
-celery_app = Celery('tasks', broker='pyamqp://guest@localhost//')
-
 import smtplib
 import os
 from dotenv import load_dotenv
@@ -11,15 +8,30 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email.header import decode_header
 from email.message import EmailMessage
-from email import message_from_string
-from lib.summarize import summarize_email
-from lib.forward import decode_subject
+from .summarize import summarize_email
 
 REDIRECT_URL = "http://localhost:3000"
 LOGO_URL = "https://i.ibb.co/P60gmv3/EC-Footer-small.png"
 
+def decode_subject(subject):
+    """
+    Decodes the subject header of an email message.
 
-@celery_app.task
+    Args:
+        subject (str): The subject header of the email.
+
+    Returns:
+        str: Decoded subject.
+    """
+    decoded = decode_header(subject)
+    decoded_subject = []
+    for part, encoding in decoded:
+        if isinstance(part, bytes):
+            decoded_subject.append(part.decode(encoding or 'utf-8'))
+        else:
+            decoded_subject.append(part)
+    return ''.join(decoded_subject)
+
 def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int, smtp_email: str, smtp_password: str, forward_to: str, cc_to: list = [], bcc_to: list = [], sentiment="") -> None:
     """
     Forwards an email message to the specified recipient using SMTP while maintaining the formatting of the original message.
@@ -32,7 +44,7 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         smtp_password (str): Sender's email password.
         forward_to (str): Recipient's email address.
     """
-    email_message = message_from_string(email_message)
+    # email_message = message_from_string(email_message)
     # New email message
     forwarded_email = MIMEMultipart()
     forwarded_email['From'] = smtp_email
@@ -55,8 +67,12 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
         else:
             continue
 
-    summary = summarize_email(html_part if html_part else email_message.get_payload(decode=True).decode(email_message.get_content_charset()))
-    forwarded_email.attach(MIMEText(f"Email Summary:\n{summary}\n\n", 'plain'))
+    try:
+        summary = summarize_email(html_part if html_part else email_message.get_payload(decode=True).decode(email_message.get_content_charset()))
+        summary_html = f"<p style='font-size: 1.2em; font-weight: bold; font-style: italic;'>Email Summary:<br>{summary}</p>"
+        forwarded_email.attach(MIMEText(summary_html, 'html'))
+    except:
+        pass
 
     if html_part:
         forwarded_email.attach(MIMEText(html_part, 'html'))
@@ -80,7 +96,6 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
 
     # TODO: Add a section for feedback on the basis of email sent (galti se bhej diya?)
 
-    # Connect to SMTP server and send the email
     with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         smtp.starttls()
         smtp.login(smtp_email, smtp_password)
@@ -89,26 +104,3 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
             to_addrs=[forward_to] + (cc_to or []) + (bcc_to or [])
             # forward_to
         )
-
-# @celery_app.task
-# def send_random_email(smtp_server, smtp_port, sender_email, sender_password, recipient_email):
-#     faker = Faker()
-
-#     with smtplib.SMTP(smtp_server, smtp_port) as server:
-#         server.starttls()
-#         server.login(sender_email, sender_password)
-
-#         msg = MIMEMultipart()
-
-#         subject = faker.sentence(nb_words=6)
-#         body = faker.paragraph(nb_sentences=5)
-
-#         msg['From'] = sender_email
-#         msg['To'] = recipient_email
-#         msg['Subject'] = subject
-
-#         msg.attach(MIMEText(body, 'plain'))
-#         server.send_message(msg)
-
-
-# https://i.ibb.co/25KTwy6/EC-Footer.png
