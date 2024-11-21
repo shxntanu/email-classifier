@@ -6,42 +6,40 @@
 
 Receiving hundreds or thousands of mails a day and then figuring out which mail should be directed to which person can be a daunting task. This project aims to tackle that problem. We created a solution that can effectively classify emails based on not only their content, but also the context in which they are written, and then route them to the respective department(s) or person(s) in charge.
 
-## Our Team
+# Our Team
 
-- [Anish Pawar](https://github.com/anishpawarrr)
-- [Mihir Deshpande](https://github.com/mihirdesh)
-- [Piyush Agarwal](https://github.com/piyushhagarwal)
-- [Shantanu Wable](https://github.com/shxntanu)
+-   [Anish Pawar](https://github.com/anishpawarrr)
+-   [Mihir Deshpande](https://github.com/mihirdesh)
+-   [Piyush Agarwal](https://github.com/piyushhagarwal)
+-   [Shantanu Wable](https://github.com/shxntanu)
 
-## Problem Statement
-
-### Email classification based on the content
+# Problem Statement
 
 Multiple emails from customers/clients that are dealt with different teams based on the context. This solution should enable auto-classification of emails based on the context, so the same can be routed to best suited team for further processing.
 
-### Technology
+## Technology
 
-- Python
-- Anaconda platform
+-   Python
+-   Anaconda platform
 
-### Other Considerations
+## Other Considerations
 
 The data selected should represent sufficient variation to be able to demonstrate classification clearly. Expectation from participants will be to present overall solution with clear focus on characteristics of data and holistic nature of the implementation.
 Data
 
 For solving this problem, participants can decide to leverage data available on public forums like Kaggle (preferably from finance domain). But the model should be easy to configure/retrain for similar topics.
 
-### Design Considerations
+## Design Considerations
 
 This model should be easy to deploy to execute either as batch or real time.
 
 Focus should also be on making it efficient from resource consumption standpoint and something that can be hosted as containers.
 
-### Benefits
+## Benefits
 
 Auto-email classification will enable significant reduction in manual efforts
 
-## Solution
+# Solution
 
 > [Demo Video](https://www.youtube.com/watch?v=2kT37tIz6ME)
 
@@ -50,7 +48,7 @@ Auto-email classification will enable significant reduction in manual efforts
     <br />
 
 _Process Flow Diagram_
-    
+
 </div>
 
 Our solution works as follows:
@@ -65,3 +63,29 @@ Our solution works as follows:
 8. **Message Composition**: The service then composes a new email with the summary (for quick reference) and the sentiment (e.g. Urgent, Complaint, Neutral) and the original email (along with attachments), and sends it back to the root node.
 9. **Routing**: The full email is then routed to the respective department/team/person through the SMTP Protocol.
 10. **Feedback System**: The system also has a feedback system, where in the case of incorrect routing, the user can provide feedback, which is then used to retrain the model.
+
+# Getting Started
+
+## Prerequisites
+
+This project requires a message broker installed on the system. We recommend using [RabbitMQ](https://www.rabbitmq.com/).
+
+If you’re using Ubuntu or Debian install RabbitMQ by executing this command:
+
+```bash
+sudo apt-get install rabbitmq-server
+```
+
+This project also uses [Ollama](https://ollama.com/) under the hood to utilize the power of large language models. To install Ollama, run:
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+## Installing Dependencies
+
+This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the dependencies, run the following command:
+
+```bash
+poetry install
+```
