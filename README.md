@@ -17,25 +17,24 @@ Receiving hundreds or thousands of mails a day and then figuring out which mail 
 
 Multiple emails from customers/clients that are dealt with different teams based on the context. This solution should enable auto-classification of emails based on the context, so the same can be routed to best suited team for further processing.
 
-## Technology
+**Technology**:
 
 -   Python
 -   Anaconda platform
 
-## Other Considerations
+**Other Considerations**:
 
 The data selected should represent sufficient variation to be able to demonstrate classification clearly. Expectation from participants will be to present overall solution with clear focus on characteristics of data and holistic nature of the implementation.
 Data
 
 For solving this problem, participants can decide to leverage data available on public forums like Kaggle (preferably from finance domain). But the model should be easy to configure/retrain for similar topics.
 
-## Design Considerations
+**Design Considerations**:
 
 This model should be easy to deploy to execute either as batch or real time.
-
 Focus should also be on making it efficient from resource consumption standpoint and something that can be hosted as containers.
 
-## Benefits
+**Benefits**:
 
 Auto-email classification will enable significant reduction in manual efforts
 
@@ -82,6 +81,14 @@ This project also uses [Ollama](https://ollama.com/) under the hood to utilize t
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
+We are using the Qwen 4b model for the same. You can use any other model as well, just make sure it has enough context window to understand the email content.
+
+Pull Qwen using:
+
+```bash
+ollama pull qwen:4b
+```
+
 ## Installing Dependencies
 
 1. Prefer installing dependencies in a virtual environment. Create a virtual environment by running:
@@ -108,9 +115,13 @@ curl -fsSL https://ollama.com/install.sh | sh
     streamlit run src/app.py
     ```
 
-### Demo
+5. Head over to http://localhost:8501 to see the app in action.
 
-![alt text](assets/demo-ss.png)
+    ![alt text](assets/demo-ss.png)
+
+# Working
+
+The service monitors the email inbox and checks every 10 seconds to see if there are any new emails. If there are, it parses them and sends them to the RAG pipeline. The RAG pipeline then classifies the email and outputs the department ID to which the mail should be sent.
 
 ![alt text](assets/output.png)
 
@@ -125,3 +136,69 @@ Here, the team id `15` corresponds to the ID of the team in the [Heirarchy JSON 
             "children": []
         },
 ```
+
+# Extensions
+
+The above demo was a basic working demo. In the hackathon, we had added a bunch more extensions to the project. Some of them are listed below.
+
+## Advanced RAG
+
+The RAG can be made more advanced by detailing the JSON file with more information about the teams. This can include the team members, their roles, email IDs, etc. This can be used to fetch the email ID of the individual / team directly and forward the email to them.
+
+By prompting the model to also provide CC and BCC, we can also include the relevant stakeholders in the email which would have otherwise not been possible using traditional classifier methods.
+
+Checkout the [advanced RAG JSON](src/data/heirarchy.json) for an example of how to extend the RAG JSON file.
+
+```json
+    ...
+        {
+            "name": "HR",
+            "description": "Human Resources department responsible for managing employee-related matters.",
+            "emails": ["hr@barclays.com"],
+            "children": [
+                {
+                    "name": "Recruitment",
+                    "description": "Responsible for hiring new emails.",
+                    "emails": ["recruitment@barclays.com"],
+                    "children": []
+                },
+                {
+                    "name": "Employee Benefits",
+                    "description": "Handles employee benefits and compensation.",
+                    "emails": ["benefits@barclays.com"],
+                    "children": []
+                },
+                ...
+            ]
+        },
+    ...
+```
+
+## Email Summarization
+
+Using a lighter model like BART or Qwen 1.5b, we can summarize the email content and attach it at the header of the mail so that the recipient can quickly glance through the email and understand the context without having to read the entire email. This allows the recipient to assign a priority to the email and respond accordingly.
+
+```python
+stream = ollama.chat(
+        model='qwen:1.5b',
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": email_content}
+        ],
+        stream=True
+    )
+```
+
+The code for summarization is [here](src/lib/summarize.py).
+
+## Product Watermarking
+
+Since we are using LLMs for forwarding and classifying, they are naturally prone to errors. By adding a picture at the end of the email indicating that the mail has been classified and forwarded using the service, the receipient can be sure that the mail has been forwarded by the system and not manually.
+
+![Forwarded Output](assets/fwd-output.png)
+
+## Attachment Content Handling
+
+The system can also handle attachments. The attachments can be parsed and the content can be extracted and sent to the model for classification. The attachments can also be forwarded to the respective team along with the email.
+
+The code for handling attachments is [here](src/lib/attachments.py).
