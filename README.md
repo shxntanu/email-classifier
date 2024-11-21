@@ -128,13 +128,13 @@ The service monitors the email inbox and checks every 10 seconds to see if there
 Here, the team id `15` corresponds to the ID of the team in the [Heirarchy JSON file](src/data/rag.json):
 
 ```json
-        {
-            "name": "Mergers & Acquisitions",
-            "id": 15,
-            "description": "The Mergers & Acquisitions team is responsible for identifying and facilitating strategic mergers, acquisitions, and divestitures to support Barclays' growth objectives.",
-            "is_leaf": true,
-            "children": []
-        },
+{
+    "name": "Mergers & Acquisitions",
+    "id": 15,
+    "description": "The Mergers & Acquisitions team is responsible for identifying and facilitating strategic mergers, acquisitions, and divestitures to support Barclays' growth objectives.",
+    "is_leaf": true,
+    "children": []
+},
 ```
 
 # Extensions
