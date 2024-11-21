@@ -84,8 +84,44 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ## Installing Dependencies
 
-This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the dependencies, run the following command:
+1. Prefer installing dependencies in a virtual environment. Create a virtual environment by running:
 
-```bash
-poetry install
+    ```bash
+    python3 -m venv .venv
+    ```
+
+2. This project uses [Poetry](https://python-poetry.org/) for dependency management. Make poetry use the newly created virtual environment:
+
+    ```bash
+    poetry env use python3
+    ```
+
+3. To install the dependencies, run the following command:
+
+    ```bash
+    poetry install
+    ```
+
+4. Then run the demo app to see the RAG pipeline in action.
+
+    ```bash
+    streamlit run src/app.py
+    ```
+
+### Demo
+
+![alt text](assets/demo-ss.png)
+
+![alt text](assets/output.png)
+
+Here, the team id `15` corresponds to the ID of the team in the [Heirarchy JSON file](src/data/rag.json):
+
+```json
+        {
+            "name": "Mergers & Acquisitions",
+            "id": 15,
+            "description": "The Mergers & Acquisitions team is responsible for identifying and facilitating strategic mergers, acquisitions, and divestitures to support Barclays' growth objectives.",
+            "is_leaf": true,
+            "children": []
+        },
 ```
