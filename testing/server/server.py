@@ -9,7 +9,7 @@ load_dotenv()
 
 from lib.listen import listen_for_emails, listen_raw_emails
 from lib.spam_filter import preprocess_text, spam_model, EmailInput
-from lib.attachment import extract_attachment_text
+from lib.attachments import extract_attachment_text
 
 imap_server = "imap.gmail.com"
 imap_port = 993
