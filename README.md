@@ -212,6 +212,18 @@ def forward_email(email_message: EmailMessage, smtp_server ...)
 
 The code for the distributed task queue is [here](src/lib/tasks.py).
 
+## Multilingual Support
+
+The system can be extended to support multiple languages. Using a Google Translate pipeline before sending the output to the model, the system can be made to support multiple languages. This can be done by translating the email content to English before sending it to the model.
+
+```python
+from translator import translate_text
+
+query = translate_text(query, 'en')
+```
+
+The code for translation is [here](hackathon/ML/app.py).
+
 ## Product Watermarking
 
 Since we are using LLMs for forwarding and classifying, they are naturally prone to errors. By adding a picture at the end of the email indicating that the mail has been classified and forwarded using the service, the receipient can be sure that the mail has been forwarded by the system and not manually.
