@@ -104,6 +104,3 @@ def forward_email(email_message: EmailMessage, smtp_server: str, smtp_port: int,
             to_addrs=[forward_to] + (cc_to or []) + (bcc_to or [])
             # forward_to
         )
-
-
-# https://i.ibb.co/25KTwy6/EC-Footer.png

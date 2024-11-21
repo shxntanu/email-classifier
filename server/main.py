@@ -11,14 +11,14 @@ load_dotenv()
 from lib.info import get_email_body
 from lib.forward import forward_email
 # from tasks import forward_email
-from lib.attachment import extract_attachments
+from lib.attachments import extract_attachments
 
 def encrypt_text(key, text):
     cipher_suite = Fernet(key)
     encrypted_text = cipher_suite.encrypt(text.encode())
     return encrypted_text
 
-heirarchy = json.loads(open("heirarchy.json").read())
+heirarchy = json.loads(open("server/src/heirarchy.json").read())
 
 imap_server = os.environ["OUTLOOK_IMAP_SERVER"]
 imap_port = os.environ["OUTLOOK_IMAP_PORT"]
