@@ -47,6 +47,7 @@
         {
             "name": "Finance",
             "description": "The Finance department oversees the financial operations of Barclays, including investment banking, retail banking, and corporate banking.",
+            "id": 13,
             "is_leaf": false,
             "children": [
                 "Investment Banking",
@@ -57,6 +58,7 @@
         {
             "name": "Investment Banking",
             "description": "The Investment Banking division handles a range of investment-related activities, including mergers & acquisitions, capital markets, and corporate finance.",
+            "id": 14,
             "is_leaf": false,
             "children": [
                 "Mergers & Acquisitions",
