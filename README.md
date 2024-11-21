@@ -191,6 +191,27 @@ stream = ollama.chat(
 
 The code for summarization is [here](src/lib/summarize.py).
 
+## Distributed Task Queue
+
+![Python + Celery + RabbitMQ](https://miro.medium.com/v2/resize:fit:1400/1*J7nGNoHsLiCnBL9ftmbAyA.png)
+
+During the hackathon, we had used the HuggingFace Transformers library to access the Mixtral 8x7b Model. Because of using a cloud hosted model, it took a while for the model to process the email and return the output.
+
+It took roughly **15 seconds** from sending a mail to the receiver mail address to the system working and forwarding the mail to the respective team. We tried to batch 10 emails, and it took about 3-5 minutes for the system to process all the emails. Assuming a typical organization receives 10,000 mails in one day, it would take about **150,000 seconds or 41 hours** to process all the emails, which means around 2 days to send just one day's worth of emails. And while one mail was being processed, it would block the main thread from processing other emails.
+This would not be acceptable in a real world scenario.
+
+So, we decided to use a distributed task queue to parallelize the processing of emails. This would allow us to process multiple emails at the same time and reduce the time taken to process all the emails. Using Celery, it is possible to process each received mail in parallel so that the system can scale horizontally and process multiple emails at the same time. Using Celery, we tried to batch the same 10 emails again, this time it took only about 15 seconds to process all the emails.
+
+```python
+from celery import Celery
+celery_app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
+@celery_app.task
+def forward_email(email_message: EmailMessage, smtp_server ...)
+```
+
+The code for the distributed task queue is [here](src/lib/tasks.py).
+
 ## Product Watermarking
 
 Since we are using LLMs for forwarding and classifying, they are naturally prone to errors. By adding a picture at the end of the email indicating that the mail has been classified and forwarded using the service, the receipient can be sure that the mail has been forwarded by the system and not manually.
