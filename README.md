@@ -1,17 +1,13 @@
 <div align="center">
     <img src="assets/Repo Cover.png" />
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 </div>
 
 > This project was the **winner** at **Barclays Pune** and bagged the **3rd Prize** 🏆 overall at [Barclays Hack-O-Hire 2024](https://www.hackerearth.com/challenges/hackathon/hack-o-hire/)
 
 Receiving hundreds or thousands of mails a day and then figuring out which mail should be directed to which person can be a daunting task. This project aims to tackle that problem. We created a solution that can effectively classify emails based on not only their content, but also the context in which they are written, and then route them to the respective department(s) or person(s) in charge.
-
-# Our Team
-
--   [Anish Pawar](https://github.com/anishpawarrr)
--   [Mihir Deshpande](https://github.com/mihirdesh)
--   [Piyush Agarwal](https://github.com/piyushhagarwal)
--   [Shantanu Wable](https://github.com/shxntanu)
 
 # Problem Statement
 
@@ -236,3 +232,10 @@ Since we are using LLMs for forwarding and classifying, they are naturally prone
 The system can also handle attachments. The attachments can be parsed and the content can be extracted and sent to the model for classification. The attachments can also be forwarded to the respective team along with the email.
 
 The code for handling attachments is [here](src/lib/attachments.py).
+
+# Our Team
+
+-   [Anish Pawar](https://github.com/anishpawarrr)
+-   [Mihir Deshpande](https://github.com/mihirdesh)
+-   [Piyush Agarwal](https://github.com/piyushhagarwal)
+-   [Shantanu Wable](https://github.com/shxntanu)
