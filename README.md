@@ -37,6 +37,11 @@ Auto-email classification will enable significant reduction in manual efforts
 
 # Solution
 
+
+> [!NOTE]
+> The solution mentioned below is what we had implemented for the hackathon in April 2024. Since then, running LLMs on-device has become much easier thanks to Ollama, hence
+> we have updated the project to Ollama instead of using a cloud-hosted model.
+
 > [Demo Video](https://www.youtube.com/watch?v=2kT37tIz6ME)
 
 <div align="center">
@@ -46,6 +51,8 @@ Auto-email classification will enable significant reduction in manual efforts
 _Process Flow Diagram_
 
 </div>
+
+### Working
 
 Our solution works as follows:
 
@@ -59,6 +66,26 @@ Our solution works as follows:
 8. **Message Composition**: The service then composes a new email with the summary (for quick reference) and the sentiment (e.g. Urgent, Complaint, Neutral) and the original email (along with attachments), and sends it back to the root node.
 9. **Routing**: The full email is then routed to the respective department/team/person through the SMTP Protocol.
 10. **Feedback System**: The system also has a feedback system, where in the case of incorrect routing, the user can provide feedback, which is then used to retrain the model.
+
+# Tech Stack
+
+<div align="center">
+
+[<img src = "https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/python.svg" alt = "Python" height = 60px />](https://www.python.org)
+<img width="2" />
+[<img src = "https://ollama.com/public/assets/c889cc0d-cb83-4c46-a98e-0d0e273151b9/42f6b28d-9117-48cd-ac0d-44baaf5c178e.png" alt = "Ollama" height = 60px />](https://ollama.com/)
+<img width="2" />
+[<img src = "https://upload.wikimedia.org/wikipedia/commons/1/19/Celery_logo.png" alt = "Celery" height = 60px />](https://docs.celeryq.dev/en/stable/)
+<img width="2" />
+[<img src = "https://static-00.iconduck.com/assets.00/rabbitmq-icon-1936x2048-zlik4nni.png" alt = "RabbitMQ" height = 60px />](https://www.rabbitmq.com/)
+
+
+[<img src = "https://avatars.githubusercontent.com/u/141221163?s=200&v=4" alt = "Qwen" height = 60px />](https://huggingface.co/Qwen)
+<img width="2" />
+[<img src = "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_5351a237b4bf5239e06d7775686837ea/meta-llama-3.png" alt = "Qwen" height = 60px />](https://llama.com)
+
+
+</div>
 
 # Getting Started
 
