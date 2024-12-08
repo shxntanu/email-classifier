@@ -249,11 +249,16 @@ forwarded_email['To'] = forward_to
 
 with smtplib.SMTP(smtp_server, smtp_port) as smtp:
     smtp.starttls()
+
+    # Log into the SMPT server and send the mail
     smtp.login(smtp_email, smtp_password)
+
     smtp.send_message(
-        forwarded_email, 
+        forwarded_email,
+
+        # The model can also provide CC or BCC mail IDs, so you can add
+        # other in CC or BCC as well.
         to_addrs=[forward_to] + (cc_to or []) + (bcc_to or [])
-        # forward_to
     )
 ```
 
