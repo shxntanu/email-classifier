@@ -5,9 +5,8 @@ from haystack.components.builders.prompt_builder import PromptBuilder
 from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
 from haystack.document_stores.in_memory import InMemoryDocumentStore
 from json import loads
-from dotenv import load_dotenv
-load_dotenv()
 
+# Load the RAG JSON
 with open('src/data/rag.json', 'r') as f:
     data = loads(f.read())
 
@@ -15,9 +14,11 @@ docs = []
 for doc in data['nodes']:
     docs.append(Document(content=str(doc)))
 
+# Clean and pre-process the RAG JSON (Optional)
 cleaner = DocumentCleaner()
 ppdocs = cleaner.run(documents=docs)
 
+# We are using an In-memory Document store for RAG
 docu_store = InMemoryDocumentStore()
 docu_store.write_documents(ppdocs['documents'])
 
@@ -43,6 +44,8 @@ template = '''
     
 prompt_builder = PromptBuilder(template=template)
 
+# You can use Llama3.1 to provide better responses, but since Qwen 4b is 
+# a smaller and faster model, you can use it on less-powerful hardware as well
 generator = OllamaGenerator(model="qwen:4b",
                             url = "http://localhost:11434",
                             generation_kwargs={
@@ -51,9 +54,8 @@ generator = OllamaGenerator(model="qwen:4b",
                               },
                             )
 
+# Build the RAG pipeline
 rag_pipeline = Pipeline()
-
-
 rag_pipeline.add_component("retriever", retriever)
 rag_pipeline.add_component("prompt_builder", prompt_builder)
 rag_pipeline.add_component("llm", generator)
