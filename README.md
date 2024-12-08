@@ -69,7 +69,6 @@ Our solution works as follows:
 
 # Tech Stack
 
-<div align="center">
 
 [<img src = "https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/python.svg" alt = "Python" height = 60px />](https://www.python.org)
 <img width="2" />
@@ -85,9 +84,11 @@ Our solution works as follows:
 [<img src = "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_5351a237b4bf5239e06d7775686837ea/meta-llama-3.png" alt = "Qwen" height = 60px />](https://llama.com)
 
 
-</div>
+
 
 # Getting Started
+
+Clone or download the repository and follow the steps below to get started.
 
 ## Prerequisites
 
