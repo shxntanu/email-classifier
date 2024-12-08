@@ -1,11 +1,14 @@
-import streamlit as st
 import imaplib
 import os
 import time
 import email
+
+# Load environment variables from .env
 from dotenv import load_dotenv
 load_dotenv()
 
+# Streamlit for UI
+import streamlit as st
 from lib.info import get_email_body
 from lib.attachments import extract_attachments
 from llm import return_ans
@@ -24,11 +27,13 @@ monitor = st.button("Monitor")
 
 if monitor and email_id and app_password:
 
+    # Log into the IMAP server of the mail provider
     imap = imaplib.IMAP4_SSL(os.environ["GMAIL_IMAP_SERVER"], os.environ["GMAIL_IMAP_PORT"])
     imap.login(email_id, app_password)
 
     while True:
-        
+
+        # Scan the inbox for unread mails
         imap.select('INBOX')
         typ, data = imap.search(None, '(UNSEEN)')
 
@@ -40,7 +45,10 @@ if monitor and email_id and app_password:
                 st.success("Done!")
         
             for num in data[0].split():
+                
+                # Fetch the complete mail message
                 typ, msg_data = imap.fetch(num, '(RFC822)')
+                
                 if typ == 'OK':
                     raw_email = msg_data[0][1]
                     email_message = email.message_from_bytes(raw_email)
