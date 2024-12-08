@@ -173,11 +173,11 @@ Checkout the [advanced RAG JSON](src/data/heirarchy.json) for an example of how 
 
 ## Email Summarization
 
-Using a lighter model like BART or Qwen 1.5b, we can summarize the email content and attach it at the header of the mail so that the recipient can quickly glance through the email and understand the context without having to read the entire email. This allows the recipient to assign a priority to the email and respond accordingly.
+Using a lighter model like BART or Qwen 4b, we can summarize the email content and attach it at the header of the mail so that the recipient can quickly glance through the email and understand the context without having to read the entire email. This allows the recipient to assign a priority to the email and respond accordingly.
 
 ```python
 stream = ollama.chat(
-        model='qwen:1.5b',
+        model='qwen:4b',
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": email_content}
@@ -227,11 +227,37 @@ Since we are using LLMs for forwarding and classifying, they are naturally prone
 
 ![Forwarded Output](assets/fwd-output.png)
 
+The code for the same is [here](src/lib/forward.py).
+
 ## Attachment Content Handling
 
 The system can also handle attachments. The attachments can be parsed and the content can be extracted and sent to the model for classification. The attachments can also be forwarded to the respective team along with the email.
 
 The code for handling attachments is [here](src/lib/attachments.py).
+
+## Mail Forwarding
+
+Combining all the features listed above, we implemented mail forwarding so that as soon as we get the designated email addresses from the output from the LLM, we forward it
+to them using SMTP.
+
+```python
+forwarded_email = MIMEMultipart()
+forwarded_email['From'] = smtp_email
+forwarded_email['To'] = forward_to
+
+# Add other parts of the email like header, summary, body text, attachments and watermark.
+
+with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+    smtp.starttls()
+    smtp.login(smtp_email, smtp_password)
+    smtp.send_message(
+        forwarded_email, 
+        to_addrs=[forward_to] + (cc_to or []) + (bcc_to or [])
+        # forward_to
+    )
+```
+
+The code for the same is [here](src/lib/forward.py).
 
 # Our Team
 
