@@ -295,7 +295,11 @@ The code for the same is [here](src/lib/forward.py).
 
 # Our Team
 
+<div align="center">
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQHUIXjGyfLXbQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1712652444225?e=1736985600&v=beta&t=sQ_LsJxfyA0K-plquIJUh2bW-S7NILaBKZd63e8nUA8" height=450px/>
+</div>
+
+-   [Shantanu Wable](https://github.com/shxntanu)
+-   [Piyush Agarwal](https://github.com/piyushhagarwal)
 -   [Anish Pawar](https://github.com/anishpawarrr)
 -   [Mihir Deshpande](https://github.com/mihirdesh)
--   [Piyush Agarwal](https://github.com/piyushhagarwal)
--   [Shantanu Wable](https://github.com/shxntanu)
