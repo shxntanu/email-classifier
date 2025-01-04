@@ -5,6 +5,7 @@ on:
     branches:
       - main
   schedule:
+    # Runs every 5 minutes
     - cron: '*/5 * * * *' # Runs every 5 minutes
 
 jobs:
