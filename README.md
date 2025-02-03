@@ -1,8 +1,11 @@
 <div align="center">
     <img src="assets/Repo Cover.png" />
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
+
+[Shantanu Wable](https://github.com/shxntanu)  |  [Anish Pawar](https://github.com/anishpawarrr)  |  [Piyush Agarwal](https://github.com/piyushhagarwal)  |  [Mihir Deshpande](https://github.com/mihirdesh)
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/downloads/)
 </div>
 
 > This project was the **winner** at **Barclays Pune** and bagged the **3rd Prize** 🏆 overall at [Barclays Hack-O-Hire 2024](https://www.hackerearth.com/challenges/hackathon/hack-o-hire/). 
@@ -292,14 +295,3 @@ with smtplib.SMTP(smtp_server, smtp_port) as smtp:
 ```
 
 The code for the same is [here](src/lib/forward.py).
-
-# Our Team
-
-<div align="center">
-<img src="https://media.licdn.com/dms/image/v2/D4D22AQHUIXjGyfLXbQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1712652444225?e=1736985600&v=beta&t=sQ_LsJxfyA0K-plquIJUh2bW-S7NILaBKZd63e8nUA8" height=450px/>
-</div>
-
--   [Shantanu Wable](https://github.com/shxntanu)
--   [Piyush Agarwal](https://github.com/piyushhagarwal)
--   [Anish Pawar](https://github.com/anishpawarrr)
--   [Mihir Deshpande](https://github.com/mihirdesh)
