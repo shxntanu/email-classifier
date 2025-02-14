@@ -296,6 +296,6 @@ with smtplib.SMTP(smtp_server, smtp_port) as smtp:
 
 The code for the same is [here](src/lib/forward.py).
 
-## License
+# License
 
 MIT
